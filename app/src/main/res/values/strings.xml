@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KtLum</string>
+    <string name="BauthLI">LogIn</string>
+    <string name="BauthSI">SignIn</string>
+    <string name="Empty"></string>
+    <string name="Email">Email</string>
+    <string name="Pwd">Password</string>
+    <string name="Wlcome">Welcome</string>
+    <string name="ErrorLI">Email or Password incorrect</string>
+    <string name="Back">Back</string>
+</resources>
