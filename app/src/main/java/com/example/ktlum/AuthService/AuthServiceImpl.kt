@@ -19,7 +19,8 @@ class AuthServiceImpl : IAuthService{
         Log.v("login","Llego al object REque")
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, userJson,
             { response -> completionHandler()
-                Log.v("login","funciona")
+                Log.v("login",response.toString())
+                //here need an IF, if true go to success page, if false, fo to user or pwd incorrect
             },
             { error -> completionHandler()
                 Log.v("login","roto")
