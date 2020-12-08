@@ -25,7 +25,7 @@ class BasicLogin : AppCompatActivity() {
             val email = et_email.text;
             val password = et_password.text;
 
-            val user = User(email.toString(),password.toString())
+            val user = User(0,email.toString(),password.toString(),"","")
             logIn(user)
         }
     }

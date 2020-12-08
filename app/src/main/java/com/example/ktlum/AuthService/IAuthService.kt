@@ -5,5 +5,6 @@ import com.example.ktlum.model.User
 
 interface IAuthService {
 
-    fun logIn(ontext: Context, user: User, completionHandler: () -> Unit)
+    fun logIn(context: Context, user: User, completionHandler: () -> Unit)
+    fun createUser(context: Context, user:User, completionHandler: () -> Unit)
 }
