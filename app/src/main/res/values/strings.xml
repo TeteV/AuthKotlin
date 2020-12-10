@@ -11,4 +11,12 @@
     <string name="ErrorLI">Email or Password incorrect</string>
     <string name="Back">Back</string>
     <string name="signup">Sign Up!</string>
+    <string name="nppl">Nº Persons</string>
+    <string name="search">Search</string>
+    <string name="user">User</string>
+    <string name="roomNum">Room #</string>
+    <string name="sizeRoom">Size</string>
+    <string name="checkin">Check-In</string>
+    <string name="checkout">Check-Out</string>
+    <string name="book">Book</string>
 </resources>

@@ -27,5 +27,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
         }
+
+        val porahoraBtn = findViewById<Button>(R.id.CrudBtn)
+        porahoraBtn.setOnClickListener {
+            val intent = Intent(this,SuccessLogin::class.java)
+            startActivity(intent)
+        }
     }
 }

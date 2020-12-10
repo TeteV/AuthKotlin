@@ -1,5 +1,6 @@
 package com.example.ktlum.controller
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +21,6 @@ class SignUp : AppCompatActivity() {
 private fun listeners(){
     val signupBtn = findViewById<Button>(R.id.SignUpBtn)
     signupBtn.setOnClickListener {
-        Log.v("Create","Picao en creao")
         val id = this.intent.getIntExtra("id", 0)
         val dni: String = findViewById<TextView>(R.id.editTextDni).text.toString()
         val name: String = findViewById<TextView>(R.id.editTextName).text.toString()
@@ -36,9 +36,8 @@ private fun listeners(){
          val authServiceImpl = AuthServiceImpl()
          authServiceImpl.createUser(this, user) { ->
              run {
-                 /* val intent = Intent(this, BicycleListActivity::class.java)
-                  startActivity(intent)*/
-                 Log.v("Create","Creado")
+                 val intent = Intent(this, BasicLogin::class.java)
+                  startActivity(intent)
              }
          }
      }

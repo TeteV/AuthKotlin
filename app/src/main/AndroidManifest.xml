@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KtLum"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.SignUp"></activity>
+        <activity android:name=".controller.RoomDetails"></activity>
+        <activity android:name=".controller.RoomList" />
+        <activity android:name=".controller.RoomListTemp" />
+        <activity android:name=".controller.SignUp" />
         <activity android:name=".controller.BasicAuthInterceptor" />
         <activity android:name=".controller.FailLogin" />
         <activity android:name=".controller.SuccessLogin" />
