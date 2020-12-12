@@ -31,6 +31,12 @@ private fun listeners(){
         Log.v("Create", user.toString())
         createUser(user);
     }
+
+    val backBtn = findViewById<Button>(R.id.BackBtn)
+    backBtn.setOnClickListener {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 }
      private fun createUser(user: User){
          val authServiceImpl = AuthServiceImpl()

@@ -24,6 +24,12 @@ class SuccessLogin : AppCompatActivity() {
             val intent = Intent(this,RoomList::class.java)
             startActivity(intent)
         }
+
+        val userBtn = findViewById<Button>(R.id.userBtn)
+        userBtn.setOnClickListener {
+            val intent = Intent(this, UserInfoActivity::class.java)
+            startActivity(intent)
+        }
        /* val searchBtn = findViewById<Button>(R.id.searchBtn)
         searchBtn.setOnClickListener {
             val numPpl: Int = findViewById(R.id.editTextNumber)

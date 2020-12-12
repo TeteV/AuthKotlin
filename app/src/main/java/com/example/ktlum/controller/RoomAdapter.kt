@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ktlum.R
 import com.example.ktlum.model.Room
 
-//adapatador para ponerlo en el recycler view siguiendo el template creado
 class RoomAdapter (var roomList: ArrayList<Room>, val context: Context) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_room_list_template, parent, false)
@@ -36,10 +35,12 @@ class RoomAdapter (var roomList: ArrayList<Room>, val context: Context) : Recycl
             roomppl.text = r.num_ppl.toString()
             roomsize.text = r.size.toString()
             itemView.setOnClickListener {
-                /*val intent = Intent(context, RoomDetails::class.java)
+                val intent = Intent(context, RoomDetails::class.java)
                 intent.putExtra("num", r.num)
-                Log.v("VilHolder func", r.num.toString())
-                context.startActivity(intent)*/
+                intent.putExtra("num_ppl", r.num_ppl)
+                intent.putExtra("num_ppl", r.size)
+                Log.v("VilHolder func", r.num.toString() + r.num_ppl.toString() + r.size.toString())
+                context.startActivity(intent)
             }
         }
     }

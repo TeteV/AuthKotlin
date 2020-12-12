@@ -19,4 +19,7 @@
     <string name="checkin">Check-In</string>
     <string name="checkout">Check-Out</string>
     <string name="book">Book</string>
+    <string name="update">Update</string>
+    <string name="delaccoun">Delete your Account</string>
+    <string name="logout">Log Out</string>
 </resources>

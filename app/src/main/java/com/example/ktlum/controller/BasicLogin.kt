@@ -15,21 +15,7 @@ class BasicLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic_login)
 
-        // get reference to all views
-        var et_email = findViewById(R.id.editTextEmail) as EditText
-        var et_password = findViewById(R.id.editTextPass) as EditText
-        var btn_submit = findViewById(R.id.LIBtn) as Button
-
-
-        // set on-click listener
-        btn_submit.setOnClickListener {
-            val email = et_email.text;
-            val password = et_password.text;
-
-            val user = User(0,email.toString(),password.toString(),"","")
-            logIn(user)
-        }
-
+        getDataLogin()
         listeners()
     }
 
@@ -43,10 +29,26 @@ class BasicLogin : AppCompatActivity() {
     }
 
     private fun listeners(){
-        val plsssBtn = findViewById<Button>(R.id.CrudBtn)
-        plsssBtn.setOnClickListener {
-            val intent = Intent(this, SuccessLogin::class.java)
+        val backBtn = findViewById<Button>(R.id.BackBtn)
+        backBtn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun getDataLogin(){
+        var et_email = findViewById(R.id.editTextEmail) as EditText
+        var et_password = findViewById(R.id.editTextPass) as EditText
+        var btn_submit = findViewById(R.id.LIBtn) as Button
+
+
+        // set on-click listener
+        btn_submit.setOnClickListener {
+            val email = et_email.text;
+            val password = et_password.text;
+
+            val user = User(0,email.toString(),password.toString(),"","")
+            logIn(user)
         }
     }
 

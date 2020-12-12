@@ -39,6 +39,12 @@ class RoomList : AppCompatActivity() {
             val intent = Intent(this, SuccessLogin::class.java)
             startActivity(intent)
         }
+
+        val userBtn = findViewById<Button>(R.id.userBtn)
+        userBtn.setOnClickListener {
+            val intent = Intent(this, UserInfoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getAllRooms(){

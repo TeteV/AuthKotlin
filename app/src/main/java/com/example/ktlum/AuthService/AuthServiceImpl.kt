@@ -15,6 +15,30 @@ import org.json.JSONObject
 class AuthServiceImpl : IAuthService{
     var allok = false
 
+
+    //Este no funcionaS
+    override fun logOut(context: Context, user: User, completionHandler: () -> Unit){
+        val path = AuthSingleton.getInstance(context).baseUrl + "/api/logout"
+        val userJson: JSONObject = JSONObject()
+        userJson.get("api_token")
+        //userJson.put("password", user.password )
+        val objectRequest = JsonObjectRequest(Request.Method.POST, path, userJson,
+                { response ->
+                    completionHandler()
+                    Log.v("login", response.toString())
+                    var plus = response.names()
+                    var pluskis = plus.get(1)
+                    if (pluskis.equals("token")){
+                        allok = true
+                    }else{ Log.v("login","false")}
+                },
+                { error ->
+                    completionHandler()
+                    Log.v("login", "Error")
+                })
+        AuthSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
     override fun logIn(context: Context, user: User, completionHandler: () -> Unit){
         val path = AuthSingleton.getInstance(context).baseUrl + "/api/login"
         val userJson: JSONObject = JSONObject()
