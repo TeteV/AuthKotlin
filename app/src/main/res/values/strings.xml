@@ -32,4 +32,10 @@
     <string name="fb">Facebook</string>
     <string name="forpass">Forgot password?</string>
     <string name="submit">Submit</string>
+
+    <string-array name="diet">
+        <item>No Diet</item>
+        <item>Half Pension</item>
+        <item>Full Pension</item>
+    </string-array>
 </resources>

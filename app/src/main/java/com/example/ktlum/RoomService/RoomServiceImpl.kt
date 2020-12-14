@@ -26,7 +26,10 @@ class RoomServiceImpl : IRoomService{
                     val num = room.getInt("num")
                     val numPpl = room.getInt("num_ppl")
                     val size = room.getInt("size")
-                    rooms.add(Room(num,numPpl,size,true,"",0))
+                    val avaible = room.getInt("avaible")
+                    val url_img = room.getString("url_img")
+                    //val user_id = room.getInt("user_id")
+                    rooms.add(Room(num,numPpl,size,avaible,url_img,0))
 
                 }
                 //Log.v("Nestor",rooms.toString())
@@ -52,7 +55,7 @@ class RoomServiceImpl : IRoomService{
                 val num_room = resquestRoom.getInt("num")
                 val num_ppl = resquestRoom.getInt("num_ppl")
                 val size = resquestRoom.getInt("size")
-                val avaible = resquestRoom.getString("avaible").toBoolean()
+                val avaible = resquestRoom.getInt("avaible")
                 val url = resquestRoom.getString("url_img")
 
                 val room = Room(num_room,num_ppl,size,avaible,url,0)
