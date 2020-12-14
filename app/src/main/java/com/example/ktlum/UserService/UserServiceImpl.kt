@@ -26,7 +26,7 @@ class UserServiceImpl : IUserService {
                 val name = requestedPost.getString("name")
                 val password = requestedPost.getString("password")
 
-                val user = User(id,email,password,name,dni)
+                val user = User(id,email,password,name,dni,"")
                 completionHandler(user)
             },
             { error ->

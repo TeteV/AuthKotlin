@@ -27,7 +27,7 @@ private fun listeners(){
         val email: String = findViewById<TextView>(R.id.editTextEmail).text.toString()
         val pwd: String = findViewById<TextView>(R.id.editTextPwd).text.toString()
 
-        val user = User(id,email,pwd,name,dni)
+        val user = User(id,email,pwd,name,dni,"")
         Log.v("Create", user.toString())
         createUser(user);
     }

@@ -1,8 +1,13 @@
 package com.example.ktlum.controller
 
+import android.accounts.AccountManager
+import android.accounts.AccountManagerCallback
+import android.accounts.AccountManagerFuture
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -15,7 +20,12 @@ class SuccessLogin : AppCompatActivity() {
         setContentView(R.layout.activity_success_login)
 
 
+        val email : String? = this.intent.getStringExtra("email")
+        val token : String? = this.intent.getStringExtra("token")
+
         listeners()
+        Log.v("succ","email: "+ email)
+        Log.v("succ","token: "+ token)
     }
 
     private fun listeners(){
@@ -45,4 +55,5 @@ class SuccessLogin : AppCompatActivity() {
 */
 
     }
+
 }

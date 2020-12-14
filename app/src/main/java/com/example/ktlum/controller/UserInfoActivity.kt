@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.ktlum.AuthService.AuthServiceImpl
 import com.example.ktlum.R
 import com.example.ktlum.UserService.UserServiceImpl
 import com.example.ktlum.model.User
@@ -46,7 +47,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         val logoutBtn = findViewById<Button>(R.id.LogOutBtn)
         logoutBtn.setOnClickListener {
-            logOutUser()
+            //logOutUser()
         }
 
         val updateBtn = findViewById<Button>(R.id.updateBtn)
@@ -146,8 +147,12 @@ class UserInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun logOutUser(){
-
+    private fun logOutUser(user:User){
+        val authServiceImpl = AuthServiceImpl()
+        authServiceImpl.logIn(this,user){run{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }}
     }
 
 

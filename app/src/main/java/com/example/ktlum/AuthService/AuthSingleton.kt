@@ -6,8 +6,8 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
 class AuthSingleton constructor(context: Context){
-   // val baseUrl = "http://192.168.43.210:8000" //clase
-     val baseUrl = "http://192.168.1.129:8000" //casa
+    val baseUrl = "http://192.168.203.73:8000" //clase
+    // val baseUrl = "http://192.168.1.129:8000" //casa
 
     companion object {
         @Volatile

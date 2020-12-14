@@ -7,8 +7,8 @@ import com.android.volley.toolbox.Volley
 import com.example.ktlum.AuthService.AuthSingleton
 
 class UserSingleton constructor(context: Context){
-    // val baseUrl = "http://192.168.43.210:8000" //clase
-    val baseUrl = "http://192.168.1.129:8000" //casa
+     val baseUrl = "http://192.168.203.73:8000" //clase
+    //val baseUrl = "http://192.168.1.129:8000" //casa
 
     companion object {
         @Volatile

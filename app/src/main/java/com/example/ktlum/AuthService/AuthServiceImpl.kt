@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.ktlum.controller.BasicLogin
+import com.example.ktlum.controller.FailLogin
 import com.example.ktlum.controller.SuccessLogin
 import com.example.ktlum.model.User
 import org.json.JSONObject
@@ -21,16 +22,10 @@ class AuthServiceImpl : IAuthService{
         val path = AuthSingleton.getInstance(context).baseUrl + "/api/logout"
         val userJson: JSONObject = JSONObject()
         userJson.get("api_token")
-        //userJson.put("password", user.password )
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, userJson,
                 { response ->
                     completionHandler()
                     Log.v("login", response.toString())
-                    var plus = response.names()
-                    var pluskis = plus.get(1)
-                    if (pluskis.equals("token")){
-                        allok = true
-                    }else{ Log.v("login","false")}
                 },
                 { error ->
                     completionHandler()
@@ -41,18 +36,29 @@ class AuthServiceImpl : IAuthService{
 
     override fun logIn(context: Context, user: User, completionHandler: () -> Unit){
         val path = AuthSingleton.getInstance(context).baseUrl + "/api/login"
-        val userJson: JSONObject = JSONObject()
+        val userJson = JSONObject()
         userJson.put("email", user.email )
         userJson.put("password", user.password )
+        userJson.put("token", user.api_token )
+        //Preguntar a tibu mañana como hacer para pillar la string de token
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, userJson,
                 { response ->
                     completionHandler()
-                    Log.v("login", response.toString())
+                    Log.v("login2", response.toString())
                     var plus = response.names()
                     var pluskis = plus.get(1)
+                    var fefe= pluskis.toString()
+                    Log.v("logg" , "fefe: "+ fefe)
                      if (pluskis.equals("token")){
-                         allok = true
-                     }else{ Log.v("login","false")}
+                         val intent = Intent(context, SuccessLogin::class.java)
+                         intent.putExtra("api_token", user.api_token)
+                         intent.putExtra("email", user.email)
+                         Log.v("VilHolder func", user.api_token)
+                         context.startActivity(intent)
+                     }else{ Log.v("login","false")
+                         val intent = Intent(context, FailLogin::class.java)
+                         context.startActivity(intent)
+                     }
                 },
                 { error ->
                     completionHandler()

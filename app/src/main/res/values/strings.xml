@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KtLum</string>
     <string name="BauthLI">LogIn</string>
-    <string name="BauthSI">SignIn</string>
+    <string name="BauthSI">Sign-In</string>
     <string name="Empty"></string>
     <string name="Email">Email</string>
     <string name="Pwd">Password</string>
@@ -19,7 +19,17 @@
     <string name="checkin">Check-In</string>
     <string name="checkout">Check-Out</string>
     <string name="book">Book</string>
+    <string name="devBtn">Btn for develop</string>
     <string name="update">Update</string>
     <string name="delaccoun">Delete your Account</string>
     <string name="logout">Log Out</string>
+    <string name="MainViewToolbar">Welcome to </string>
+    <string name="MainViewToolbar2"> J &amp; N</string>
+    <string name="MainViewToolbar3">Hotels &amp; Resorts</string>
+    <string name="divider">_______________________</string>
+    <string name="divider2">or</string>
+    <string name="google">Google</string>
+    <string name="fb">Facebook</string>
+    <string name="forpass">Forgot password?</string>
+    <string name="submit">Submit</string>
 </resources>
