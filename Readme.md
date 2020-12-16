@@ -61,7 +61,7 @@ Here the details of the room: photos and a form where you check/put your info.\
 ***
 Here your user details to change/delete your account things\
 ![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/user-deatils.JPG)
-### Usability
+## Usability
 ##### First of all
 You must to create your user in Sig-In window.
 
