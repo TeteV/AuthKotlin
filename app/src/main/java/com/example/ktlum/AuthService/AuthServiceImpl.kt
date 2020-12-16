@@ -14,7 +14,6 @@ import org.json.JSONObject
 
 
 class AuthServiceImpl : IAuthService{
-    var allok = false
 
 
     //Este no funcionaS
@@ -35,27 +34,33 @@ class AuthServiceImpl : IAuthService{
     }
 
     override fun logIn(context: Context, user: User, completionHandler: () -> Unit){
+        Log.v("LoginService","Auqi")
         val path = AuthSingleton.getInstance(context).baseUrl + "/api/login"
         val userJson = JSONObject()
+        Log.v("LoginService","Auqi1")
         userJson.put("email", user.email )
         userJson.put("password", user.password )
-        userJson.put("token", user.api_token )
-        //Preguntar a tibu mañana como hacer para pillar la string de token
+        userJson.put("api_token", user.api_token )
+        Log.v("LoginService","Auqi2")
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, userJson,
                 { response ->
                     completionHandler()
-                    Log.v("login2", response.toString())
-                    var plus = response.names()
-                    var pluskis = plus.get(1)
-                    var fefe= pluskis.toString()
-                    Log.v("logg" , "fefe: "+ fefe)
-                     if (pluskis.equals("token")){
+                    Log.v("LoginService","Auqi3")
+                    val plus = response.opt("res")
+                    val tokn = response?.opt("api_token").toString()
+                    val id_us = response?.opt("id_user").toString()
+                    Log.v("LoginService","plus: " + plus)
+                    Log.v("login","token: " + tokn)
+                    Log.v("login","Id User: " + id_us)
+                     if (plus==true){
+
                          val intent = Intent(context, SuccessLogin::class.java)
-                         intent.putExtra("api_token", user.api_token)
-                         intent.putExtra("email", user.email)
+                         intent.putExtra("api_token", tokn)
+                         intent.putExtra("id_user",id_us)
+
                          Log.v("VilHolder func", user.api_token)
                          context.startActivity(intent)
-                     }else{ Log.v("login","false")
+                     }else{
                          val intent = Intent(context, FailLogin::class.java)
                          context.startActivity(intent)
                      }
@@ -79,12 +84,13 @@ class AuthServiceImpl : IAuthService{
 
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, postJson,
                 { response -> completionHandler()
-                Log.v("AddUser","Creado")},
+                Log.v("AddUser","Creado")
+                },
                 { error -> completionHandler()
-                    Log.v("AddUser","Roto")})
+                    Log.v("AddUser","Roto")
+                })
         AuthSingleton.getInstance(context).addToRequestQueue(objectRequest)
     }
-
 
 
 }

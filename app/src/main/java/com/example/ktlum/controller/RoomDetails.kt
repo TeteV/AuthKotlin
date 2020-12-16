@@ -19,14 +19,8 @@ class RoomDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_details)
 
-        /*// Create an ArrayAdapter
-        val adapter = ArrayAdapter.createFromResource(this,
-            R.array.diet, android.R.layout.simple_spinner_item)
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Apply the adapter to the spinner
-
-        spinner.adapter = adapter*/
+        /*val id_us : String? = this.intent.getStringExtra("id_user")
+        Log.v("roomdetail","id User : "+ id_us)*/
 
         val num: Int = this.intent.getIntExtra("num", 0)
 
@@ -43,12 +37,16 @@ class RoomDetails : AppCompatActivity() {
         val backBtn = findViewById<Button>(R.id.BackBtn)
         backBtn.setOnClickListener {
             val intent = Intent(this, SuccessLogin::class.java)
+            /*val id_us : String? = this.intent.getStringExtra("id_user")
+            intent.putExtra("id_user", id_us)*/
             startActivity(intent)
         }
 
         val userBtn = findViewById<Button>(R.id.userBtn)
         userBtn.setOnClickListener {
             val intent = Intent(this, UserInfoActivity::class.java)
+            /*val id_us : String? = this.intent.getStringExtra("id_user")
+            intent.putExtra("id_user", id_us)*/
             startActivity(intent)
         }
 
@@ -88,6 +86,7 @@ class RoomDetails : AppCompatActivity() {
         val roomServiceImpl = RoomServiceImpl()
         roomServiceImpl.getByNum(this, num) { response ->
             run {
+                Log.v("Getbynum","Aquipaso")
                 val numDe: TextView = findViewById(R.id.RoomNDetails)
                 val size: TextView = findViewById(R.id.RoomSize)
                 val nppl: TextView = findViewById(R.id.NPers)

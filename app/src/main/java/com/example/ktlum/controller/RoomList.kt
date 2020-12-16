@@ -21,6 +21,12 @@ class RoomList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_list)
 
+        /*val id_us : String? = this.intent.getStringExtra("id_user")
+        Log.v("romlist","id User : "+ id_us)*/
+
+        //val nppl : Int? = this.intent.getIntExtra("num_ppl")
+        //Log.v("RoomList", "NumPpl: "+nppl)
+
         rooms = ArrayList<Room>()
         viewManager = LinearLayoutManager(this)
         viewAdapter = RoomAdapter(rooms, this)
@@ -37,12 +43,14 @@ class RoomList : AppCompatActivity() {
         val backBtn = findViewById<Button>(R.id.BackBtn)
         backBtn.setOnClickListener {
             val intent = Intent(this, SuccessLogin::class.java)
+           /* val id_us : String? = this.intent.getStringExtra("id_user")
+            intent.putExtra("id_user", id_us)*/
             startActivity(intent)
         }
 
         val userBtn = findViewById<Button>(R.id.userBtn)
         userBtn.setOnClickListener {
-            val intent = Intent(this, UserInfoActivity::class.java)
+           val intent = Intent(this, UserInfoActivity::class.java)
             startActivity(intent)
         }
     }

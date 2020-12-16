@@ -29,7 +29,8 @@ class RoomAdapter (var roomList: ArrayList<Room>, val context: Context) : Recycl
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(r:Room, context: Context){
-            val url = "http://192.168.203.73:8000/public/rooms_image/"
+          val url = "http://192.168.203.73:8000/rooms_image/"//clase
+            // val url = "http://192.168.1.129:8000/rooms_image/" //casa
             val roomnum: TextView = itemView.findViewById(R.id.textViewNRoom)
             val roomppl: TextView = itemView.findViewById(R.id.textViewNPers)
             val roomsize: TextView = itemView.findViewById(R.id.textViewSize)
@@ -41,15 +42,13 @@ class RoomAdapter (var roomList: ArrayList<Room>, val context: Context) : Recycl
 
             val imageUrl = url + r.url_img
             Picasso.with(context).load(imageUrl).into(img);
-
-            Log.v("Imagen","Imagen: "+ imageUrl)
-
             itemView.setOnClickListener {
+
                 val intent = Intent(context, RoomDetails::class.java)
                 intent.putExtra("num", r.num)
                 intent.putExtra("num_ppl", r.num_ppl)
                 intent.putExtra("num_ppl", r.size)
-                Log.v("VilHolder func", r.num.toString() + r.num_ppl.toString() + r.size.toString())
+                //intent.putExtra("id_user", id_us)
                 context.startActivity(intent)
             }
         }

@@ -3,13 +3,14 @@ package com.example.ktlum.UserService
 import android.content.Context
 import android.util.Log
 import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.ktlum.model.User
 import org.json.JSONObject
 
 class UserServiceImpl : IUserService {
 
-    override fun getByDni(context: Context, userDni: String, completionHandler: (response: User?) -> Unit) {
+    /*override fun getByDni(context: Context, userDni: String, completionHandler: (response: User?) -> Unit) {
         val path = UserSingleton.getInstance(context).baseUrl + "/api/user/" + userDni
         val objectRequest = JsonObjectRequest(
             Request.Method.GET, path, null,
@@ -34,11 +35,30 @@ class UserServiceImpl : IUserService {
                 completionHandler(null)
             })
        UserSingleton.getInstance(context).addToRequestQueue(objectRequest)
-    }
-
-    /*override fun getDniById(context: Context, userId: Int, completionHandler: (response: User?) -> Unit){
-
     }*/
+
+    override fun getById(context: Context, userId: Int, completionHandler: (response: User?) -> Unit) {
+        val path = UserSingleton.getInstance(context).baseUrl + "/api/user-id/" + userId
+        Log.v("GetbyidService","Path: "+ path)
+        val objectRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                if(response == null) { completionHandler(null) }
+                val requestedPost= response.getJSONObject(0)
+                val id = requestedPost.getInt("id")
+                val email = requestedPost.getString("email")
+                val dni = requestedPost.getString("dni")
+                val name = requestedPost.getString("name")
+                Log.v("GetbyidService","email: "+email)
+
+                val user = User(id,email,"",name,dni,"")
+                completionHandler(user)
+            },
+            { error ->
+                Log.v("holi","Error en getById")
+                completionHandler(null)
+            })
+        UserSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
 
     override fun deleteUser(context: Context, userDni: String, completionHandler: () -> Unit) {
         val path = UserSingleton.getInstance(context).baseUrl + "/api/delete-user/" + userDni

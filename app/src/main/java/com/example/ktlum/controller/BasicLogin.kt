@@ -2,6 +2,7 @@ package com.example.ktlum.controller
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +12,14 @@ import android.widget.TextView
 import com.example.ktlum.AuthService.AuthServiceImpl
 import com.example.ktlum.R
 import com.example.ktlum.model.User
+import com.example.ktlum.util.PreferenceHelper
+import com.example.ktlum.util.PreferenceHelper.set
 
 class BasicLogin : AppCompatActivity() {
+    private val preferences by lazy{
+        PreferenceHelper.defaultPrefs(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic_login)
@@ -23,13 +30,20 @@ class BasicLogin : AppCompatActivity() {
 
     private fun logIn(context:Context,user:User){
         val authServiceImpl = AuthServiceImpl()
-        authServiceImpl.logIn(this,user){run{
+        authServiceImpl.logIn(this,user)
+        {
+            /*val token : String = this.intent.getStringExtra("api_token").toString()
+            val id_us : String = this.intent.getStringExtra("id_user").toString()*/
 
-            val intent = Intent(context, SuccessLogin::class.java)
-            intent.putExtra("api_token", user.api_token)
-            intent.putExtra("email", user.email)
-            Log.v("VilHolder func", user.api_token)
-            context.startActivity(intent)
+            run {
+
+                /*Log.v("LoginWapo","ID en lognwapo1: "+id_us)
+                createSessionPreference(token,id_us.toInt())*/
+                val intent = Intent(context, SuccessLogin::class.java)
+                intent.putExtra("api_token", user.api_token)
+                intent.putExtra("iduser", user.userId)
+                Log.v("VilHolder func", user.api_token)
+                context.startActivity(intent)
         }}
     }
 
@@ -68,6 +82,12 @@ class BasicLogin : AppCompatActivity() {
             val user = User(0,email.toString(),password.toString(),"","","")
             logIn(this,user)
         }
+    }
+
+    private fun createSessionPreference(token: String, userId: Int){
+        val preferences = PreferenceHelper.defaultPrefs(this)
+        preferences["token"] = token
+        preferences["userId"] = userId
     }
 
 

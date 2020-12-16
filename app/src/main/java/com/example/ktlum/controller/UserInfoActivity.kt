@@ -12,26 +12,22 @@ import com.example.ktlum.AuthService.AuthServiceImpl
 import com.example.ktlum.R
 import com.example.ktlum.UserService.UserServiceImpl
 import com.example.ktlum.model.User
+import com.example.ktlum.util.PreferenceHelper
+import com.squareup.picasso.Picasso
 
 class UserInfoActivity : AppCompatActivity() {
+
+    private val preferences by lazy{
+        PreferenceHelper.defaultPrefs(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
 
-      /* val userServiceImpl = UserServiceImpl()
-        userServiceImpl.getByDni(this, dni) { response ->
-            run {
-                val name: TextView = findViewById(R.id.editTextName)
-                val email: TextView = findViewById(R.id.editTextEmail)
-                val dni: TextView = findViewById(R.id.editTextDni)
+        val userId = preferences.getInt("userId", 0)
 
-                name.setText(response?.name ?: "")
-                email.setText(response?.email ?: "")
-                dni.setText(response?.dni ?: "")
-            }
-        }*/
-
-        //getByDni(dni)
+        getById(userId)
 
 
         listeners()
@@ -42,6 +38,7 @@ class UserInfoActivity : AppCompatActivity() {
         val backBtn = findViewById<Button>(R.id.BackBtn)
         backBtn.setOnClickListener {
             val intent = Intent(this, SuccessLogin::class.java)
+
             startActivity(intent)
         }
 
@@ -56,7 +53,7 @@ class UserInfoActivity : AppCompatActivity() {
             val dni: String = findViewById<TextView>(R.id.editTextDni).text.toString()
             val name: String = findViewById<TextView>(R.id.editTextName).text.toString()
             val email: String = findViewById<TextView>(R.id.editTextEmail).text.toString()
-            //val user = User(id, dni, name, email)
+            val user = User(0,email,"",name,dni,"")
 
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Update")
@@ -68,7 +65,7 @@ class UserInfoActivity : AppCompatActivity() {
                         android.R.string.yes, Toast.LENGTH_SHORT
                 ).show()
                 try {
-                    //updateUser(user)
+                    updateUser(user)
                 }
                 catch (e: Exception) {
                     Log.v("Edit", "Error en el catch")
@@ -111,17 +108,22 @@ class UserInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun getByDni(dni: String) {
+    private fun getById(userId: Int) {
+        Log.v("Getbyid", "Estoy aqui: "+userId)
         val userServiceImpl = UserServiceImpl()
-        userServiceImpl.getByDni(this, dni) { response ->
+        userServiceImpl.getById(this, userId) { response ->
             run {
                 val name: TextView = findViewById(R.id.editTextName)
                 val email: TextView = findViewById(R.id.editTextEmail)
                 val dni: TextView = findViewById(R.id.editTextDni)
+                val url = "http://192.168.203.73:8000/users_image/"//clase
+                //val url = "http://192.168.1.129:8000/users_image/"//casa
 
                 name.setText(response?.name ?: "")
                 email.setText(response?.email ?: "")
                 dni.setText(response?.dni ?: "")
+                /*val imageUrl = url + r.url_img
+                Picasso.with(context).load(imageUrl).into(img);*/
             }
         }
     }
@@ -136,7 +138,7 @@ class UserInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUser(user:User) {
+    private fun updateUser(user: User) {
         val userServiceImpl = UserServiceImpl()
         userServiceImpl.updateUser(this, user) { ->
             run {
