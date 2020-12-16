@@ -64,6 +64,9 @@ Here your user details to change/delete your account things\
 ### Usability
 ##### First of all
 You must to create your user in Sig-In window.
+
+![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/signinchustra.JPG)
+
 Then you can login in Log-In window and you see something like this
 
 ![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/succlog.JPG)
