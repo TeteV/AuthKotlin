@@ -1,4 +1,4 @@
-#Kotlin Restful
+# Kotlin Restful
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Data Model](#data-model)
@@ -11,26 +11,29 @@
 A very simple booking management for my hotel in Gran Canaria. \
 Is under construction but I put all my energy into it.
 
-##Data Model
+This proyect can run with my backend here: \
+[Backend](https://github.com/TeteV/CRUDLumen)
+
+## Data Model
 
 In database have the following tables, \
 Users Have: Id, Dni, Name (Complete), email, password(codified), api_token, url_img(Thumbnail)
 Rooms Have: num (Room Number), num_ppl (Numbers of people can stay), size, avaible,url_img(Photos of the room), user_Id(FK)\
 Booking Have: Check-in, Check-out, Diet, num_room(FK), user_id(FK)
 
-###RelationShips
+### RelationShips
 A user can only book a room that's available
 A user can book  many rooms
 
 A room only can book to one User
 
-###E/R Diagram
+### E/R Diagram
 ![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/eR.JPG)
 
-###Relational Model
+### Relational Model
 ![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/relational.JPG)
 
-###Use Case
+### Use Case
 ![Image text](https://github.com/TeteV/AuthKotlin/blob/master/img/CassoUso.jfif)
 
 A non Reg Person can only see the available rooms.
